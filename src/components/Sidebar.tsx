@@ -4,10 +4,6 @@ import { useRouter, type RouteId } from "../state/router";
 const NAV: { id: RouteId; label: string }[] = [
   { id: "home", label: "Início" },
   { id: "guides", label: "Guia do Novato" },
-  { id: "builds", label: "Builds" },
-  { id: "hunts", label: "Hunts" },
-  { id: "tasks", label: "Tasks" },
-  { id: "quests", label: "Quests" },
   { id: "calc-level", label: "Calculadoras" },
 ];
 

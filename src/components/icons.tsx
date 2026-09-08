@@ -32,43 +32,6 @@ export function BookIcon(p: IconProps) {
   );
 }
 
-export function LayersIcon(p: IconProps) {
-  return (
-    <svg viewBox="0 0 20 20" width="18" height="18" {...stroke} {...p}>
-      <path d="M10 3.2 3.4 6.4 10 9.6l6.6-3.2z" />
-      <path d="M3.4 10 10 13.2 16.6 10" />
-      <path d="M3.4 13.4 10 16.6l6.6-3.2" />
-    </svg>
-  );
-}
-
-export function TargetIcon(p: IconProps) {
-  return (
-    <svg viewBox="0 0 20 20" width="18" height="18" {...stroke} {...p}>
-      <circle cx="10" cy="10" r="5.4" />
-      <path d="M10 2.3v2.6M10 15.1v2.6M2.3 10h2.6M15.1 10h2.6" />
-    </svg>
-  );
-}
-
-export function TasksIcon(p: IconProps) {
-  return (
-    <svg viewBox="0 0 20 20" width="18" height="18" {...stroke} {...p}>
-      <path d="M8 5h8M8 10h8M8 15h8" />
-      <path d="m3.2 4.6 1 1 1.8-2M3.2 10l1 1 1.8-2M3.2 15.4l1 1 1.8-2" />
-    </svg>
-  );
-}
-
-export function ScrollIcon(p: IconProps) {
-  return (
-    <svg viewBox="0 0 20 20" width="18" height="18" {...stroke} {...p}>
-      <path d="M5.5 2.8v14.4" />
-      <path d="M5.5 3.8h8.2l-1.8 3 1.8 3H5.5" />
-    </svg>
-  );
-}
-
 export function CalculatorIcon(p: IconProps) {
   return (
     <svg viewBox="0 0 20 20" width="18" height="18" {...stroke} {...p}>
@@ -99,10 +62,6 @@ export function ArrowRightIcon(p: IconProps) {
 export const NAV_ICON: Record<RouteId, (p: IconProps) => ReactElement> = {
   home: HomeIcon,
   guides: BookIcon,
-  builds: LayersIcon,
-  hunts: TargetIcon,
-  tasks: TasksIcon,
-  quests: ScrollIcon,
   "calc-level": CalculatorIcon,
   "calc-skill": CalculatorIcon,
   "calc-magic": CalculatorIcon,

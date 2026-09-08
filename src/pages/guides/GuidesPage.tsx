@@ -5,6 +5,7 @@ import { PageSub, PageTitle, SectionCap } from "../../components/ui";
 import { ArrowRightIcon } from "../../components/icons";
 import { CHAPTERS, type GuideChapter } from "../../lib/tibia/guide";
 import { Block } from "./GuideBlocks";
+import { ChapterMap } from "./ChapterMap";
 
 /* ---------------------------------------------------------------------------
    Guia do Novato — lista de capítulos + leitura de um capítulo.
@@ -175,6 +176,8 @@ function ChapterView({
               ))}
             </div>
           )}
+
+          <ChapterMap chapter={chapter} />
 
           {chapter.sections.map((s, i) => (
             <section

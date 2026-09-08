@@ -12,13 +12,13 @@ const STEPS = [
   { n: "IV", title: "Suba no continente", text: "Hunts seguras para o seu nível, com XP/h e lucro previsíveis." },
 ];
 
-const QUICK: { id: RouteId; label: string; tag: string; text: string }[] = [
-  { id: "guides", label: "Guia do Novato", tag: "pronto", text: "Do personagem recém-criado até o primeiro boss." },
-  { id: "builds", label: "Builds", tag: "em breve", text: "Distribuição de pontos e equipamento por faixa de nível." },
-  { id: "hunts", label: "Hunts", tag: "em breve", text: "Spots seguros com XP/h e lucro esperado por vocação." },
-  { id: "tasks", label: "Tasks", tag: "em breve", text: "Ordem recomendada das tasks de Grizzly Adams e dos Gnomes." },
-  { id: "quests", label: "Quests", tag: "em breve", text: "Passo a passo das quests que valem a pena logo cedo." },
-  { id: "calc-level", label: "Calculadoras", tag: "pronto", text: "Nível, skill e magic level — planeje sua próxima meta." },
+const QUICK: { id: RouteId; label: string; text: string }[] = [
+  { id: "guides", label: "Guia do Novato", text: "8 capítulos, do personagem recém-criado ao nível 50." },
+  { id: "calc-level", label: "Calculadora de Nível", text: "Quanto de XP falta e quanto tempo pro próximo nível." },
+  { id: "calc-death", label: "Bênçãos & Morte", text: "O que você perde ao morrer e o custo de se proteger." },
+  { id: "calc-exercise", label: "Exercise Weapons", text: "Quantas armas de treino e o custo em gold e Tibia Coins." },
+  { id: "calc-lootsplit", label: "Loot Split", text: "Divide o loot da party pelo texto do Hunt Analyser." },
+  { id: "calc-hunt", label: "Análise de Hunt", text: "XP/h, lucro/h e o tempo até o seu nível alvo." },
 ];
 
 export function Home() {
@@ -68,14 +68,9 @@ export function Home() {
                   <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[radial-gradient(circle_at_38%_32%,#e6b45c,#b9863a)] text-[#2a1d0e] shadow-[inset_0_1px_1px_rgba(255,240,200,0.5)]">
                     <Icon />
                   </span>
-                  <span className="flex items-center justify-between">
-                    <b className="font-display text-[13.5px] font-bold tracking-[0.3px] text-ink">
-                      {q.label}
-                    </b>
-                    <span className="rounded-[3px] border border-[#b7a071] px-[5px] py-px text-[10px] text-ink-faint">
-                      {q.tag}
-                    </span>
-                  </span>
+                  <b className="font-display text-[13.5px] font-bold tracking-[0.3px] text-ink">
+                    {q.label}
+                  </b>
                   <p className="m-0 text-[11.5px] leading-[1.5] text-ink-dim">{q.text}</p>
                 </button>
               );

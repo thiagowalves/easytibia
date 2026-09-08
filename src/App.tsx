@@ -2,7 +2,6 @@ import { Sidebar } from "./components/Sidebar";
 import { RouterProvider, useRouter } from "./state/router";
 import { VocationProvider } from "./state/vocation";
 import { Home } from "./pages/Home";
-import { Placeholder } from "./pages/Placeholder";
 import { GuidesPage } from "./pages/guides/GuidesPage";
 import { LevelCalculator } from "./pages/calculators/LevelCalculator";
 import { SkillCalculator } from "./pages/calculators/SkillCalculator";
@@ -36,14 +35,6 @@ function Screen() {
       return <ImbueCalculator />;
     case "guides":
       return <GuidesPage />;
-    case "builds":
-      return <Placeholder title="Builds" />;
-    case "hunts":
-      return <Placeholder title="Hunts" />;
-    case "tasks":
-      return <Placeholder title="Tasks" />;
-    case "quests":
-      return <Placeholder title="Quests" />;
     default:
       return <Home />;
   }

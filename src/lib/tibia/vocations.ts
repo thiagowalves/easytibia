@@ -110,10 +110,11 @@ export const VOCATIONS: Record<VocationId, Vocation> = {
     id: "monk",
     name: "Monge",
     color: "#dd9a4f",
-    // TODO(monk): confirmar ganhos por nível e fatores de skill.
+    // Ganhos por nível confirmados (TibiaWiki "Vocação"/"Monk"): 10 HP, 10 mana,
+    // 25 cap. Os fatores de skill abaixo ainda são estimativas — daí `provisional`.
     hpPerLevel: 10,
     manaPerLevel: 10,
-    capPerLevel: 15,
+    capPerLevel: 25,
     factors: {
       fist: 1.1,
       club: 1.2,
