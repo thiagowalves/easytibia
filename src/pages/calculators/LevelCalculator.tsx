@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Page } from "../../components/Page";
 import { Crumb } from "../../components/Topbar";
+import { CalcNav } from "./CalcNav";
 import {
   Card,
   Field,
@@ -66,7 +67,9 @@ export function LevelCalculator() {
         </PageSub>
       </div>
 
-      <div className="mt-[22px] grid grid-cols-[minmax(0,416px)_minmax(0,1fr)] items-start gap-[22px]">
+      <CalcNav />
+
+      <div className="grid grid-cols-[minmax(0,416px)_minmax(0,1fr)] items-start gap-[22px]">
         <Card className="flex flex-col gap-[15px] p-5">
           <Field label="Nível atual">
             <TextInput value={currentLevel} onChange={setCurrentLevel} />

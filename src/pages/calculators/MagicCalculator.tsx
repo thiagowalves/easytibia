@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Page } from "../../components/Page";
 import { Crumb } from "../../components/Topbar";
+import { CalcNav } from "./CalcNav";
 import {
   Card,
   Field,
@@ -92,7 +93,9 @@ export function MagicCalculator() {
         </PageSub>
       </div>
 
-      <div className="mt-[22px] grid grid-cols-[minmax(0,416px)_minmax(0,1fr)] items-start gap-[22px]">
+      <CalcNav />
+
+      <div className="grid grid-cols-[minmax(0,416px)_minmax(0,1fr)] items-start gap-[22px]">
         <Card className="flex flex-col gap-[15px] p-5">
           <div className="grid grid-cols-2 gap-3">
             <Field label="Magic level atual">
