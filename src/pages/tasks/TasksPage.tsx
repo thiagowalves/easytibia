@@ -140,7 +140,7 @@ export function TasksPage() {
         {groups.map((g) => (
           <section
             key={g.label}
-            className="rounded-[4px] border border-[#15100a] bg-parch p-[6px_18px_12px] shadow-[0_2px_6px_rgba(0,0,0,0.4)]"
+            className="parch-card p-[6px_18px_12px]"
           >
             <SectionCap tone="ink" className="mb-1 mt-3">
               {g.label}

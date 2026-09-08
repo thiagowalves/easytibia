@@ -2,16 +2,7 @@ import type { ReactNode } from "react";
 
 /** Painel de pergaminho. */
 export function Card({ className = "", children }: { className?: string; children: ReactNode }) {
-  return (
-    <div
-      className={
-        "rounded-[4px] border border-[#15100a] bg-parch text-ink shadow-[0_2px_6px_rgba(0,0,0,0.4)] " +
-        className
-      }
-    >
-      {children}
-    </div>
-  );
+  return <div className={"parch-card text-ink " + className}>{children}</div>;
 }
 
 /** Legenda de seção em maiúsculas. `tone` muda a cor conforme o fundo. */

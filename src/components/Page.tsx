@@ -6,7 +6,7 @@ export function Page({ crumb, children }: { crumb: ReactNode; children: ReactNod
   return (
     <div className="flex min-w-0 flex-1 flex-col">
       <Topbar crumb={crumb} />
-      <div className="brass-corners relative m-[16px_22px_22px] flex-1 overflow-y-auto rounded-[5px] border-2 border-oak-line bg-oak p-[24px_26px_28px] shadow-[inset_0_0_70px_rgba(0,0,0,0.55),0_16px_44px_rgba(0,0,0,0.5)]">
+      <div className="brass-corners tibia-bezel relative m-[16px_22px_22px] flex-1 overflow-y-auto p-[24px_26px_28px]">
         {children}
       </div>
     </div>

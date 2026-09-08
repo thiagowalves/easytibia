@@ -22,13 +22,13 @@ function MapLink({ coord, label = "ver no mapa" }: { coord: Coord; label?: strin
  * margem transparente — exibimos grande e com downscale suave (nada de
  * `pixelated`, que "quebra" a arte em tamanhos não inteiros). Some se falhar.
  */
-function SpriteImg({ src, alt, size = 46 }: { src: string; alt: string; size?: number }) {
+function SpriteImg({ src, alt, size = 58 }: { src: string; alt: string; size?: number }) {
   const [failed, setFailed] = useState(false);
   if (failed) return null;
   return (
     <span
       style={{ width: size, height: size }}
-      className="grid shrink-0 place-items-center rounded-[4px] border border-[#cdbb90] bg-[#efe6cd] p-[2px]"
+      className="grid shrink-0 place-items-center rounded-[5px] border border-[#b7a271] bg-[radial-gradient(circle_at_38%_30%,#f3ecd6,#e0d3ac)] p-[3px] shadow-[inset_0_1px_1px_rgba(255,251,235,0.7),0_1px_3px_rgba(60,44,22,0.28)]"
     >
       <img
         src={src}
@@ -63,7 +63,7 @@ function Places({ items, iconCredit }: Extract<GuideBlock, { kind: "places" }>) 
       <ul className="flex flex-col divide-y divide-parch-line">
         {items.map((it, i) => (
           <li key={i} className="flex items-start gap-3 py-2.5 first:pt-0 last:pb-0">
-            {it.icon && <SpriteImg src={it.icon} alt={it.name} size={48} />}
+            {it.icon && <SpriteImg src={it.icon} alt={it.name} size={60} />}
             <div className="min-w-0 flex-1">
               <span className="flex flex-wrap items-baseline gap-x-2">
                 <b className="text-[12.5px] font-semibold text-ink">{it.name}</b>
@@ -95,12 +95,12 @@ function Bestiary({ credit, creditUrl, creatures }: Extract<GuideBlock, { kind: 
         {creatures.map((c, i) => (
           <li
             key={i}
-            className="flex items-center gap-2.5 rounded-[4px] border border-parch-line bg-parch-2/50 px-2 py-1.5"
+            className="flex items-center gap-2.5 rounded-[5px] border border-parch-line bg-parch-2/40 px-2 py-2"
           >
             {c.sprite ? (
-              <SpriteImg src={c.sprite} alt={c.name} size={48} />
+              <SpriteImg src={c.sprite} alt={c.name} size={56} />
             ) : (
-              <span className="h-[48px] w-[48px] shrink-0 rounded-[4px] border border-dashed border-[#c6b489]" />
+              <span className="h-[56px] w-[56px] shrink-0 rounded-[5px] border border-dashed border-[#c6b489]" />
             )}
             <div className="min-w-0">
               <b className="block text-[12px] font-semibold leading-tight text-ink">{c.name}</b>

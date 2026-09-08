@@ -100,7 +100,7 @@ export function ChapterMap({ chapter }: { chapter: GuideChapter }) {
   const r = Math.max(2.8, Math.min(7, vw / 46));
 
   return (
-    <div className="rounded-[4px] border border-[#15100a] bg-parch p-[16px_18px] shadow-[0_2px_6px_rgba(0,0,0,0.4)]">
+    <div className="parch-card p-[16px_18px]">
       <SectionCap tone="ink" className="mb-3">
         Mapa do capítulo
       </SectionCap>

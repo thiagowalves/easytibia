@@ -53,10 +53,52 @@ body {
 .fachwerk {
   background-color: var(--color-wall);
   background-image:
-    repeating-linear-gradient(90deg, #201610 0 13px, rgba(0, 0, 0, 0) 13px 190px),
-    repeating-linear-gradient(0deg, #201610 0 13px, rgba(0, 0, 0, 0) 13px 158px),
+    /* grão fino de madeira */
+    repeating-linear-gradient(
+      92deg,
+      rgba(0, 0, 0, 0.16) 0 2px,
+      rgba(255, 255, 255, 0.015) 2px 5px,
+      rgba(0, 0, 0, 0) 5px 9px
+    ),
+    /* vinheta */
+    radial-gradient(120% 90% at 50% 0%, rgba(255, 220, 160, 0.05), rgba(0, 0, 0, 0.42) 78%),
+    repeating-linear-gradient(90deg, #1c130c 0 14px, rgba(0, 0, 0, 0) 14px 200px),
+    repeating-linear-gradient(0deg, #1c130c 0 14px, rgba(0, 0, 0, 0) 14px 168px),
     linear-gradient(45deg, rgba(0, 0, 0, 0) 47.5%, #2b2013 47.5% 52.5%, rgba(0, 0, 0, 0) 52.5%);
-  background-size: auto, auto, 190px 158px;
+  background-size: auto, cover, auto, auto, 200px 168px;
+}
+
+/* Moldura chanfrada estilo janela do cliente do Tibia. */
+.tibia-bezel {
+  border: 2px solid #120c06;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #33261699, #1f150c);
+  box-shadow:
+    inset 0 0 0 1px rgba(224, 169, 74, 0.14),
+    inset 0 2px 0 rgba(255, 236, 190, 0.06),
+    inset 0 -14px 24px rgba(0, 0, 0, 0.4),
+    0 12px 34px rgba(0, 0, 0, 0.5);
+}
+
+/* Painel de pergaminho com grão e relevo. */
+.parch-card {
+  position: relative;
+  border: 1px solid #17110a;
+  border-radius: 4px;
+  background-color: var(--color-parch);
+  background-image:
+    radial-gradient(60% 40% at 30% 0%, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0) 70%),
+    repeating-linear-gradient(
+      42deg,
+      rgba(120, 90, 45, 0.05) 0 2px,
+      rgba(255, 255, 255, 0.03) 2px 3px,
+      rgba(0, 0, 0, 0) 3px 6px
+    ),
+    radial-gradient(circle at 80% 90%, rgba(120, 90, 45, 0.08), rgba(0, 0, 0, 0) 55%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 247, 224, 0.55),
+    inset 0 0 0 1px rgba(198, 180, 137, 0.35),
+    0 3px 10px rgba(0, 0, 0, 0.4);
 }
 
 /* Cantoneiras de latão do painel principal. */

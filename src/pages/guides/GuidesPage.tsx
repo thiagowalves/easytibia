@@ -4,8 +4,17 @@ import { Crumb } from "../../components/Topbar";
 import { PageSub, PageTitle, SectionCap } from "../../components/ui";
 import { ArrowRightIcon } from "../../components/icons";
 import { CHAPTERS, type GuideChapter } from "../../lib/tibia/guide";
+import { sprite } from "../../lib/tibia/guide/sprites";
 import { Block } from "./GuideBlocks";
 import { ChapterMap } from "./ChapterMap";
+
+/** Um sprite representativo por capítulo (quando existe). */
+const CHAPTER_SPRITE: Record<string, string | undefined> = {
+  newhaven: sprite("Gustavo, the Guard"),
+  targuna: sprite("Herald of Fire"),
+  continente: sprite("Norf"),
+  tasks: sprite("Grizzly Adams"),
+};
 
 /* ---------------------------------------------------------------------------
    Guia do Novato — lista de capítulos + leitura de um capítulo.
@@ -80,12 +89,23 @@ export function GuidesPage() {
                 disabled={!ready}
                 onClick={() => ready && setOpenId(c.id)}
                 className={
-                  "flex w-full items-center gap-4 rounded-[4px] border border-[#15100a] bg-parch p-[14px_16px] text-left shadow-[0_2px_5px_rgba(0,0,0,0.35)] transition-colors " +
-                  (ready ? "hover:border-brass" : "cursor-not-allowed opacity-55")
+                  "parch-card flex w-full items-center gap-3.5 p-[13px_16px] text-left transition-all duration-150 " +
+                  (ready
+                    ? "hover:-translate-y-0.5 hover:shadow-[inset_0_1px_0_rgba(255,247,224,0.55),inset_0_0_0_1px_rgba(194,137,43,0.6),0_8px_18px_rgba(0,0,0,0.45)]"
+                    : "cursor-not-allowed opacity-55")
                 }
               >
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-seal font-display text-[14px] font-bold text-[#f0e3c6]">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#7a2f27] bg-[radial-gradient(circle_at_38%_30%,#b0463a,#7a2f27)] font-display text-[14px] font-bold text-[#f6e4b6] shadow-[0_2px_5px_rgba(0,0,0,0.35)]">
                   {c.order}
+                </span>
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center">
+                  {CHAPTER_SPRITE[c.id] && (
+                    <img
+                      src={CHAPTER_SPRITE[c.id]}
+                      alt=""
+                      className="h-full w-full rounded-[5px] border border-[#b7a271] bg-[radial-gradient(circle_at_38%_30%,#f3ecd6,#e0d3ac)] p-0.5 object-contain"
+                    />
+                  )}
                 </span>
                 <span className="min-w-0 flex-1">
                   <span className="flex flex-wrap items-baseline gap-x-2">
@@ -165,7 +185,7 @@ function ChapterView({
       <div className="mt-5 grid grid-cols-[minmax(0,1fr)_300px] items-start gap-[22px]">
         <div className="flex flex-col gap-5">
           {chapter.intro.length > 0 && (
-            <div className="rounded-[4px] border border-[#15100a] bg-parch p-[16px_18px] shadow-[0_2px_6px_rgba(0,0,0,0.4)]">
+            <div className="parch-card p-[16px_18px]">
               {chapter.intro.map((p, i) => (
                 <p
                   key={i}
@@ -182,7 +202,7 @@ function ChapterView({
           {chapter.sections.map((s, i) => (
             <section
               key={i}
-              className="rounded-[4px] border border-[#15100a] bg-parch p-[16px_18px] shadow-[0_2px_6px_rgba(0,0,0,0.4)]"
+              className="parch-card p-[16px_18px]"
             >
               <SectionCap tone="ink" className="mb-3">
                 {s.heading}
@@ -196,7 +216,7 @@ function ChapterView({
           ))}
 
           {chapter.pitfalls.length > 0 && (
-            <section className="rounded-[4px] border border-[#15100a] bg-parch p-[16px_18px] shadow-[0_2px_6px_rgba(0,0,0,0.4)]">
+            <section className="parch-card p-[16px_18px]">
               <SectionCap tone="ink" className="mb-3">
                 Erros comuns
               </SectionCap>
@@ -212,7 +232,7 @@ function ChapterView({
           )}
 
           {chapter.sources.length > 0 && (
-            <div className="rounded-[4px] border border-[#15100a] bg-parch p-[14px_18px] shadow-[0_2px_6px_rgba(0,0,0,0.4)]">
+            <div className="parch-card p-[14px_18px]">
               <SectionCap tone="ink" className="mb-2">
                 Fontes
               </SectionCap>
@@ -234,7 +254,7 @@ function ChapterView({
           )}
         </div>
 
-        <aside className="sticky top-0 rounded-[4px] border border-[#15100a] bg-parch p-4 shadow-[0_2px_6px_rgba(0,0,0,0.4)]">
+        <aside className="sticky top-0 parch-card p-4">
           <SectionCap tone="ink" className="mb-3">
             Checklist do capítulo
           </SectionCap>

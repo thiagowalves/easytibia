@@ -50,7 +50,7 @@ export function QuestsPage() {
         <Toggle checked={freeOnly} onChange={setFreeOnly} title="Só free account" />
       </div>
 
-      <div className="overflow-x-auto rounded-[4px] border border-[#15100a] bg-parch p-[6px_18px_14px] shadow-[0_2px_6px_rgba(0,0,0,0.4)]">
+      <div className="overflow-x-auto parch-card p-[6px_18px_14px]">
         <table className="w-full border-collapse text-[12.5px]">
           <thead>
             <tr className="text-ink-faint">
