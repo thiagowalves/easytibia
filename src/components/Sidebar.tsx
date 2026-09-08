@@ -27,9 +27,9 @@ export function Sidebar() {
           <ShieldIcon />
         </span>
         <span className="font-display text-[20px] font-semibold leading-[1.02] tracking-[0.4px] text-cream">
-          Tibia
+          Easy
           <br />
-          Iniciante
+          Tibia
         </span>
       </div>
 
