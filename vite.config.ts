@@ -9,6 +9,11 @@ const host = process.env.TAURI_DEV_HOST;
 export default defineConfig(() => ({
   plugins: [react(), tailwindcss()],
 
+  // Servido em "/" no app Tauri e em hosts de raiz (Netlify/Cloudflare).
+  // Para o GitHub Pages (thiagowalves.github.io/easytibia/), o workflow
+  // define GITHUB_PAGES=true e o site sai sob "/easytibia/".
+  base: process.env.GITHUB_PAGES === "true" ? "/easytibia/" : "/",
+
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
   //
   // 1. prevent Vite from obscuring rust errors
