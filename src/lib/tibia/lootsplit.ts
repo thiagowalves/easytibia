@@ -21,7 +21,22 @@ export interface HuntSession {
   totalLoot: number;
   totalSupplies: number;
   totalBalance: number;
+  /** Presentes em sessões solo ("Hunting Session"). */
+  xpGain?: number;
+  xpPerHour?: number;
+  rawGain?: number;
   members: HuntMember[];
+}
+
+/** "02:33h" ou "01:07:20h" → horas decimais. */
+export function sessionHours(length: string | undefined): number {
+  if (!length) return NaN;
+  const m = length.match(/(\d+):(\d+)(?::(\d+))?/);
+  if (!m) return NaN;
+  const h = Number(m[1]);
+  const min = Number(m[2]);
+  const s = m[3] ? Number(m[3]) : 0;
+  return h + min / 60 + s / 3600;
 }
 
 /** "1.234.567" ou "1,234,567" ou "-12,345" → número. */
@@ -56,6 +71,15 @@ export function parseHuntSession(text: string): HuntSession | null {
     const lt = line.match(/^\s*Loot Type\s*:\s*(.+)$/i);
     if (lt) {
       lootType = lt[1].trim();
+      continue;
+    }
+    const xp = line.match(/^\s*(XP Gain|XP\/h|Raw XP Gain)\s*:\s*(-?[\d.,]+)/i);
+    if (xp && !current) {
+      const key = xp[1].toLowerCase();
+      const value = toNumber(xp[2]);
+      if (key === "xp gain") header.xpgain = value;
+      else if (key === "xp/h") header.xph = value;
+      else if (key === "raw xp gain") header.rawgain = value;
       continue;
     }
 
@@ -93,7 +117,8 @@ export function parseHuntSession(text: string): HuntSession | null {
   const withBalance = members.filter(
     (m) => m.loot !== 0 || m.supplies !== 0 || m.balance !== 0,
   );
-  if (withBalance.length === 0) return null;
+  const hasHeader = seenHeaderBalance || header.loot != null || header.xpgain != null;
+  if (withBalance.length === 0 && !hasHeader) return null;
 
   return {
     sessionLength,
@@ -101,6 +126,9 @@ export function parseHuntSession(text: string): HuntSession | null {
     totalLoot: header.loot ?? withBalance.reduce((s, m) => s + m.loot, 0),
     totalSupplies: header.supplies ?? withBalance.reduce((s, m) => s + m.supplies, 0),
     totalBalance: header.balance ?? withBalance.reduce((s, m) => s + m.balance, 0),
+    xpGain: header.xpgain,
+    xpPerHour: header.xph,
+    rawGain: header.rawgain,
     members: withBalance,
   };
 }

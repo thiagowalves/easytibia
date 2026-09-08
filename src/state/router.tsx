@@ -12,7 +12,9 @@ export type RouteId =
   | "calc-magic"
   | "calc-death"
   | "calc-exercise"
-  | "calc-lootsplit";
+  | "calc-lootsplit"
+  | "calc-hunt"
+  | "calc-imbue";
 
 interface RouterValue {
   route: RouteId;
