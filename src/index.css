@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Tema "salão de guilda" — paleta e tipografia do Tibia Iniciante.
+   Os valores vêm do mockup de design (design/*.dc.html).
+--------------------------------------------------------------------------- */
+@theme {
+  --color-wall: #332a1e;
+  --color-timber: #201610;
+  --color-oak: #221913;
+  --color-oak-line: #48371f;
+
+  --color-parch: #e8dcbf;
+  --color-parch-2: #dccda3;
+  --color-parch-line: #c6b489;
+
+  --color-ink: #3a2b16;
+  --color-ink-dim: #6c5a3b;
+  --color-ink-faint: #8b7952;
+
+  --color-cream: #efe3c6;
+  --color-cream-dim: #b6a480;
+  --color-cream-faint: #8a7856;
+
+  --color-brass: #c2892b;
+  --color-brass-hi: #e0a94a;
+  --color-herb: #556f2c;
+  --color-seal: #8f3a2f;
+  --color-num: #8a5a16;
+
+  --font-display: "Grenze Gotisch", Georgia, serif;
+  --font-body: "Spectral", Georgia, "Times New Roman", serif;
+  --font-mono: "Cutive Mono", ui-monospace, monospace;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #1c150d;
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Parede de enxaimel (Fachwerk) atrás de toda a interface. */
+.fachwerk {
+  background-color: var(--color-wall);
+  background-image:
+    repeating-linear-gradient(90deg, #201610 0 13px, rgba(0, 0, 0, 0) 13px 190px),
+    repeating-linear-gradient(0deg, #201610 0 13px, rgba(0, 0, 0, 0) 13px 158px),
+    linear-gradient(45deg, rgba(0, 0, 0, 0) 47.5%, #2b2013 47.5% 52.5%, rgba(0, 0, 0, 0) 52.5%);
+  background-size: auto, auto, 190px 158px;
+}
+
+/* Cantoneiras de latão do painel principal. */
+.brass-corners::before,
+.brass-corners::after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 2px solid var(--color-brass);
+  opacity: 0.45;
+  pointer-events: none;
+}
+.brass-corners::before {
+  top: 7px;
+  left: 7px;
+  border-right: 0;
+  border-bottom: 0;
+}
+.brass-corners::after {
+  bottom: 7px;
+  right: 7px;
+  border-left: 0;
+  border-top: 0;
+}
+
+/* Campo numérico em pergaminho. */
+.field-input {
+  background: var(--color-parch-2);
+  border: 1px solid #b39a6d;
+  border-radius: 3px;
+  padding: 9px 11px;
+  color: var(--color-ink);
+  font: inherit;
+  font-size: 13.5px;
+  width: 100%;
+  box-shadow: inset 0 1px 2px rgba(90, 66, 33, 0.25);
+}
+.field-input:focus {
+  outline: none;
+  border-color: var(--color-brass);
+}

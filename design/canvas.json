@@ -1,0 +1,13 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1280, "h": 900, "title": "Home" },
+    { "file": "CalcNivel.dc.html", "x": 1360, "y": 0, "w": 1280, "h": 900, "title": "Calculadora de Nivel" },
+    { "file": "CalcSkill.dc.html", "x": 2720, "y": 0, "w": 1280, "h": 900, "title": "Calculadora de Skill" },
+    { "file": "CalcMagic.dc.html", "x": 0, "y": 1030, "w": 1280, "h": 900, "title": "Calculadora de Magic Level" },
+    { "file": "Guia.dc.html", "x": 1360, "y": 1030, "w": 1280, "h": 1000, "title": "Guia (template)" }
+  ],
+  "annotations": [
+    { "id": "brief", "x": 0, "y": -160, "w": 680, "text": "Tibia Iniciante - direcao visual 'salao de guilda': parede de enxaimel (Fachwerk) ao fundo, madeira de carvalho com ferragens de latao na sidebar e no topo, paineis em pergaminho, selos de cera, tipografia Grenze Gotisch + Spectral. Botoes de vocacao = medalhoes de madeira com a figura de cada classe (desenhadas a mao; sprites reais do Tibia entram na implementacao). Os numeros das calculadoras sao exemplos; as formulas serao validadas no codigo." }
+  ],
+  "launch": { "view": "canvas" }
+}
