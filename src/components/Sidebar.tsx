@@ -6,6 +6,7 @@ const NAV: { id: RouteId; label: string }[] = [
   { id: "guides", label: "Guia do Novato" },
   { id: "quests", label: "Quests" },
   { id: "tasks", label: "Tasks" },
+  { id: "hunts", label: "Hunts" },
   { id: "calc-level", label: "Calculadoras" },
 ];
 

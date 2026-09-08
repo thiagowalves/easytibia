@@ -5,6 +5,7 @@ export type RouteId =
   | "guides"
   | "quests"
   | "tasks"
+  | "hunts"
   | "calc-level"
   | "calc-skill"
   | "calc-magic"

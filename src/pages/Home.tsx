@@ -16,6 +16,7 @@ const QUICK: { id: RouteId; label: string; text: string }[] = [
   { id: "guides", label: "Guia do Novato", text: "8 capítulos, do personagem recém-criado ao nível 50." },
   { id: "quests", label: "Quests", text: "Lista filtrável das quests que valem a pena cedo." },
   { id: "tasks", label: "Tasks", text: "Tracker das tasks do Grizzly Adams, com pontos e rank." },
+  { id: "hunts", label: "Hunts", text: "Spots por faixa de nível, com XP/h e lucro/h." },
   { id: "calc-level", label: "Calculadora de Nível", text: "Quanto de XP falta e quanto tempo pro próximo nível." },
   { id: "calc-death", label: "Bênçãos & Morte", text: "O que você perde ao morrer e o custo de se proteger." },
   { id: "calc-lootsplit", label: "Loot Split", text: "Divide o loot da party pelo texto do Hunt Analyser." },

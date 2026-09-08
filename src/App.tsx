@@ -5,6 +5,7 @@ import { Home } from "./pages/Home";
 import { GuidesPage } from "./pages/guides/GuidesPage";
 import { QuestsPage } from "./pages/quests/QuestsPage";
 import { TasksPage } from "./pages/tasks/TasksPage";
+import { HuntsPage } from "./pages/hunts/HuntsPage";
 import { LevelCalculator } from "./pages/calculators/LevelCalculator";
 import { SkillCalculator } from "./pages/calculators/SkillCalculator";
 import { MagicCalculator } from "./pages/calculators/MagicCalculator";
@@ -41,6 +42,8 @@ function Screen() {
       return <QuestsPage />;
     case "tasks":
       return <TasksPage />;
+    case "hunts":
+      return <HuntsPage />;
     default:
       return <Home />;
   }

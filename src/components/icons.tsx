@@ -32,6 +32,15 @@ export function BookIcon(p: IconProps) {
   );
 }
 
+export function TargetIcon(p: IconProps) {
+  return (
+    <svg viewBox="0 0 20 20" width="18" height="18" {...stroke} {...p}>
+      <circle cx="10" cy="10" r="5.4" />
+      <path d="M10 2.3v2.6M10 15.1v2.6M2.3 10h2.6M15.1 10h2.6" />
+    </svg>
+  );
+}
+
 export function TasksIcon(p: IconProps) {
   return (
     <svg viewBox="0 0 20 20" width="18" height="18" {...stroke} {...p}>
@@ -82,6 +91,7 @@ export const NAV_ICON: Record<RouteId, (p: IconProps) => ReactElement> = {
   guides: BookIcon,
   quests: ScrollIcon,
   tasks: TasksIcon,
+  hunts: TargetIcon,
   "calc-level": CalculatorIcon,
   "calc-skill": CalculatorIcon,
   "calc-magic": CalculatorIcon,
