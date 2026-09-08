@@ -5,28 +5,34 @@
    Os valores vêm do mockup de design (design/*.dc.html).
 --------------------------------------------------------------------------- */
 @theme {
-  --color-wall: #332a1e;
-  --color-timber: #201610;
-  --color-oak: #221913;
-  --color-oak-line: #48371f;
+  --color-wall: #1c231a;
+  --color-timber: #10140e;
+  --color-oak: #141810;
+  --color-oak-line: #0e3a10;
 
-  --color-parch: #e8dcbf;
-  --color-parch-2: #dccda3;
-  --color-parch-line: #c6b489;
+  --color-parch: #e9dcbd;
+  --color-parch-2: #dccca0;
+  --color-parch-line: #c3b184;
 
-  --color-ink: #3a2b16;
+  --color-ink: #402d15;
   --color-ink-dim: #6c5a3b;
   --color-ink-faint: #8b7952;
 
-  --color-cream: #efe3c6;
-  --color-cream-dim: #b6a480;
-  --color-cream-faint: #8a7856;
+  --color-cream: #efe6c9;
+  --color-cream-dim: #b3ac8b;
+  --color-cream-faint: #857e5f;
 
-  --color-brass: #c2892b;
-  --color-brass-hi: #e0a94a;
-  --color-herb: #556f2c;
+  /* Verde "Tibia" das molduras + dourado dos detalhes. */
+  --color-tframe: #0d4110;
+  --color-tframe-hi: #2f7a2f;
+  --color-tbar-a: #1f5d1f;
+  --color-tbar-b: #0b330c;
+
+  --color-brass: #b9962f;
+  --color-brass-hi: #e0bd55;
+  --color-herb: #4f7a2a;
   --color-seal: #8f3a2f;
-  --color-num: #8a5a16;
+  --color-num: #7a5a16;
 
   --font-display: "Grenze Gotisch", Georgia, serif;
   --font-body: "Spectral", Georgia, "Times New Roman", serif;
@@ -41,7 +47,7 @@ body,
 
 body {
   margin: 0;
-  background: #1c150d;
+  background: #0e120c;
   color: var(--color-cream);
   font-family: var(--font-body);
   font-size: 14.5px;
@@ -49,41 +55,63 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Parede de enxaimel (Fachwerk) atrás de toda a interface. */
+/* Fundo escuro esverdeado com textura de pedra, no estilo tibia.com. */
 .fachwerk {
-  background-color: var(--color-wall);
+  background-color: #10150e;
   background-image:
-    /* grão fino de madeira */
     repeating-linear-gradient(
-      92deg,
-      rgba(0, 0, 0, 0.16) 0 2px,
-      rgba(255, 255, 255, 0.015) 2px 5px,
-      rgba(0, 0, 0, 0) 5px 9px
+      100deg,
+      rgba(0, 0, 0, 0.22) 0 2px,
+      rgba(255, 255, 255, 0.012) 2px 6px,
+      rgba(0, 0, 0, 0) 6px 11px
     ),
-    /* vinheta */
-    radial-gradient(120% 90% at 50% 0%, rgba(255, 220, 160, 0.05), rgba(0, 0, 0, 0.42) 78%),
-    repeating-linear-gradient(90deg, #1c130c 0 14px, rgba(0, 0, 0, 0) 14px 200px),
-    repeating-linear-gradient(0deg, #1c130c 0 14px, rgba(0, 0, 0, 0) 14px 168px),
-    linear-gradient(45deg, rgba(0, 0, 0, 0) 47.5%, #2b2013 47.5% 52.5%, rgba(0, 0, 0, 0) 52.5%);
-  background-size: auto, cover, auto, auto, 200px 168px;
+    radial-gradient(130% 100% at 50% -10%, rgba(70, 120, 60, 0.09), rgba(0, 0, 0, 0.5) 80%),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.28) 0 1px, rgba(0, 0, 0, 0) 1px 46px),
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.28) 0 1px, rgba(0, 0, 0, 0) 1px 62px);
+  background-size: auto, cover, auto, auto;
 }
 
-/* Moldura chanfrada estilo janela do cliente do Tibia. */
+/* Moldura verde estilo caixa do tibia.com. */
 .tibia-bezel {
-  border: 2px solid #120c06;
+  border: 1px solid #000;
   border-radius: 6px;
-  background: linear-gradient(180deg, #33261699, #1f150c);
+  background: linear-gradient(180deg, #17190f, #10120b);
   box-shadow:
-    inset 0 0 0 1px rgba(224, 169, 74, 0.14),
-    inset 0 2px 0 rgba(255, 236, 190, 0.06),
-    inset 0 -14px 24px rgba(0, 0, 0, 0.4),
-    0 12px 34px rgba(0, 0, 0, 0.5);
+    inset 0 0 0 2px var(--color-tframe),
+    inset 0 0 0 3px rgba(120, 170, 110, 0.12),
+    inset 0 2px 0 rgba(160, 210, 150, 0.06),
+    0 12px 34px rgba(0, 0, 0, 0.55);
 }
 
-/* Painel de pergaminho com grão e relevo. */
+/* Barra de título verde (topo das caixas do tibia.com). */
+.tibia-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 7px 13px;
+  background: linear-gradient(180deg, var(--color-tbar-a), var(--color-tbar-b));
+  color: #f2ead0;
+  box-shadow:
+    inset 0 1px 0 rgba(180, 230, 170, 0.22),
+    inset 0 -8px 14px rgba(0, 0, 0, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.4);
+}
+.tibia-titlebar::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  background: var(--color-brass-hi);
+  transform: rotate(45deg);
+  box-shadow: 0 0 5px rgba(224, 189, 85, 0.7);
+}
+
+/* Painel de pergaminho com moldura verde, grão e relevo. */
 .parch-card {
   position: relative;
-  border: 1px solid #17110a;
+  border: 1px solid #000;
   border-radius: 4px;
   background-color: var(--color-parch);
   background-image:
@@ -94,11 +122,12 @@ body {
       rgba(255, 255, 255, 0.03) 2px 3px,
       rgba(0, 0, 0, 0) 3px 6px
     ),
-    radial-gradient(circle at 80% 90%, rgba(120, 90, 45, 0.08), rgba(0, 0, 0, 0) 55%);
+    radial-gradient(circle at 80% 90%, rgba(110, 90, 45, 0.08), rgba(0, 0, 0, 0) 55%);
   box-shadow:
-    inset 0 1px 0 rgba(255, 247, 224, 0.55),
-    inset 0 0 0 1px rgba(198, 180, 137, 0.35),
-    0 3px 10px rgba(0, 0, 0, 0.4);
+    inset 0 0 0 1px rgba(198, 180, 137, 0.4),
+    inset 0 0 0 2px var(--color-tframe),
+    inset 0 1px 0 2px rgba(255, 247, 224, 0.4),
+    0 3px 10px rgba(0, 0, 0, 0.45);
 }
 
 /* Cantoneiras de latão do painel principal. */

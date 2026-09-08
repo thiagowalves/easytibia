@@ -95,7 +95,7 @@ export function GuidesPage() {
                     : "cursor-not-allowed opacity-55")
                 }
               >
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#7a2f27] bg-[radial-gradient(circle_at_38%_30%,#b0463a,#7a2f27)] font-display text-[14px] font-bold text-[#f6e4b6] shadow-[0_2px_5px_rgba(0,0,0,0.35)]">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#000] bg-[radial-gradient(circle_at_38%_30%,#3a8f3a,#0c360c)] font-display text-[14px] font-bold text-[#f4ecd2] shadow-[0_2px_5px_rgba(0,0,0,0.35)]">
                   {c.order}
                 </span>
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center">

@@ -32,38 +32,36 @@ export function Home() {
   return (
     <Page crumb={<Crumb current="Salão da Guilda" />}>
       {/* Herói */}
-      <div className="relative overflow-hidden rounded-[6px] border border-[#120c06] bg-[radial-gradient(120%_150%_at_15%_-20%,rgba(224,169,74,0.22),rgba(0,0,0,0)_55%),linear-gradient(180deg,#2c2013,#1c130b)] p-[22px_24px] shadow-[inset_0_1px_0_rgba(255,236,190,0.08),inset_0_-30px_50px_rgba(0,0,0,0.45)]">
-        <div className="pointer-events-none absolute -right-6 -top-8 text-[150px] leading-none text-[rgba(224,169,74,0.06)]">
+      <div className="tibia-titlebar rounded-b-none font-display text-[19px] font-semibold tracking-[0.4px]">
+        Bem-vindo ao EasyTibia
+      </div>
+      <div className="relative overflow-hidden rounded-t-none border border-t-0 border-[#000] bg-[radial-gradient(120%_150%_at_12%_-25%,rgba(47,122,47,0.2),rgba(0,0,0,0)_55%),linear-gradient(180deg,#181b11,#11140c)] p-[18px_22px_20px] shadow-[inset_0_0_0_1px_rgba(120,170,110,0.12)]">
+        <div className="pointer-events-none absolute -right-6 -top-8 text-[rgba(120,170,110,0.07)]">
           <ShieldIcon width={150} height={150} />
         </div>
         <div className="relative flex items-start gap-4">
-          <span className="mt-0.5 flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-[8px] border border-[#5a4023] bg-[radial-gradient(circle_at_36%_28%,#eebd66,#8a5e26)] text-[#241a0e] shadow-[inset_0_1px_2px_rgba(255,244,214,0.7),0_2px_6px_rgba(0,0,0,0.4)] [&_svg]:h-[26px] [&_svg]:w-[26px]">
+          <span className="mt-0.5 flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-[8px] border border-[#000] bg-[radial-gradient(circle_at_36%_28%,#3a8f3a,#0c360c)] text-[#eaf3e2] shadow-[inset_0_1px_2px_rgba(180,230,170,0.4),0_2px_6px_rgba(0,0,0,0.4)] [&_svg]:h-[26px] [&_svg]:w-[26px]">
             <ShieldIcon />
           </span>
-          <div>
-            <h1 className="m-0 font-display text-[30px] font-semibold leading-[1.05] tracking-[0.5px] text-[#f4e6bd] [text-shadow:0_2px_0_rgba(0,0,0,0.5)]">
-              Bem-vindo ao EasyTibia
-            </h1>
-            <p className="mt-1.5 max-w-[560px] text-[13px] leading-[1.55] text-cream-dim">
-              O companion para quem está começando: guia passo a passo, quests, tasks, spots de caça e
-              calculadoras — sem se perder no caminho.
-            </p>
-          </div>
+          <p className="max-w-[580px] text-[13px] leading-[1.6] text-cream-dim">
+            O companion para quem está começando: guia passo a passo, quests, tasks, spots de caça e
+            calculadoras — sem se perder no caminho.
+          </p>
         </div>
 
         {/* Trilha "comece por aqui" */}
         <div className="relative mt-5 grid grid-cols-4 gap-3">
-          <div className="pointer-events-none absolute left-[9%] right-[9%] top-[13px] h-px bg-[linear-gradient(90deg,transparent,rgba(224,169,74,0.35),transparent)]" />
+          <div className="pointer-events-none absolute left-[9%] right-[9%] top-[13px] h-px bg-[linear-gradient(90deg,transparent,rgba(224,189,85,0.4),transparent)]" />
           {STEPS.map((s) => (
             <button
               key={s.n}
               onClick={() => navigate("guides")}
-              className="group relative flex flex-col items-center gap-1.5 rounded-[5px] px-2 py-2 text-center transition-colors hover:bg-[rgba(224,169,74,0.08)]"
+              className="group relative flex flex-col items-center gap-1.5 rounded-[5px] px-2 py-2 text-center transition-colors hover:bg-[rgba(47,122,47,0.12)]"
             >
-              <span className="flex h-[26px] w-[26px] items-center justify-center rounded-full border border-[#7a5a2e] bg-[radial-gradient(circle_at_38%_30%,#b0463a,#7a2f27)] font-display text-[13px] font-bold text-[#f6e4b6] shadow-[0_2px_5px_rgba(0,0,0,0.4)]">
+              <span className="flex h-[26px] w-[26px] items-center justify-center rounded-full border border-[#000] bg-[radial-gradient(circle_at_38%_30%,#3a8f3a,#0c360c)] font-display text-[13px] font-bold text-[#f4ecd2] shadow-[0_2px_5px_rgba(0,0,0,0.4)]">
                 {s.n}
               </span>
-              <b className="text-[12px] font-bold leading-tight text-[#f0e0b6]">{s.title}</b>
+              <b className="text-[12px] font-bold leading-tight text-[#eee0b4]">{s.title}</b>
               <span className="text-[10.5px] leading-[1.4] text-cream-faint group-hover:text-cream-dim">
                 {s.text}
               </span>
@@ -86,7 +84,7 @@ export function Home() {
                   onClick={() => navigate(q.id)}
                   className="parch-card group flex flex-col gap-2 p-3.5 text-left transition-all duration-150 hover:-translate-y-0.5 hover:shadow-[inset_0_1px_0_rgba(255,247,224,0.55),inset_0_0_0_1px_rgba(194,137,43,0.6),0_8px_18px_rgba(0,0,0,0.45)]"
                 >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-[7px] border border-[#a9701f] bg-[radial-gradient(circle_at_38%_30%,#eebd66,#b9863a)] text-[#2a1d0e] shadow-[inset_0_1px_1px_rgba(255,244,214,0.7),0_1px_3px_rgba(60,44,22,0.3)] [&_svg]:h-[19px] [&_svg]:w-[19px]">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-[7px] border border-[#000] bg-[radial-gradient(circle_at_38%_30%,#3a8f3a,#0c360c)] text-[#eaf3e2] shadow-[inset_0_1px_1px_rgba(180,230,170,0.4),0_1px_3px_rgba(0,0,0,0.35)] [&_svg]:h-[19px] [&_svg]:w-[19px]">
                     <Icon />
                   </span>
                   <b className="font-display text-[13.5px] font-bold tracking-[0.3px] text-ink group-hover:text-num">

@@ -21,8 +21,8 @@ export function Sidebar() {
 
   return (
     <aside className="tibia-bezel m-[18px_0_22px_20px] flex w-[236px] shrink-0 flex-col p-[18px_14px_16px]">
-      <div className="flex items-center gap-[11px] border-b border-[#3a2a17] px-1 pb-[16px] pt-1">
-        <span className="flex h-[34px] w-[34px] items-center justify-center rounded-[6px] border border-[#5a4023] bg-[radial-gradient(circle_at_36%_30%,#e6b45c,#8a5e26)] text-[#2a1d0e] shadow-[inset_0_1px_1px_rgba(255,240,200,0.6)]">
+      <div className="flex items-center gap-[11px] px-1 pb-[14px] pt-1">
+        <span className="flex h-[34px] w-[34px] items-center justify-center rounded-[6px] border border-[#000] bg-[radial-gradient(circle_at_36%_30%,#2f7a2f,#0b330c)] text-[#eaf3e2] shadow-[inset_0_1px_1px_rgba(180,230,170,0.35),inset_0_0_0_1px_rgba(120,170,110,0.25)]">
           <ShieldIcon />
         </span>
         <span className="font-display text-[21px] font-semibold leading-[0.98] tracking-[0.4px] text-cream [text-shadow:0_1px_0_rgba(0,0,0,0.5)]">
@@ -32,11 +32,11 @@ export function Sidebar() {
         </span>
       </div>
 
-      <div className="px-[10px] pb-2 pt-3.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-cream-faint">
+      <div className="tibia-titlebar rounded-b-none text-[10px] font-bold uppercase tracking-[0.16em] text-[#e6dfc4]">
         Navegar
       </div>
 
-      <nav className="flex flex-col gap-1">
+      <nav className="flex flex-col gap-0.5 border border-t-0 border-[#000] bg-[rgba(10,20,10,0.35)] p-1.5">
         {NAV.map((item) => {
           const Icon = NAV_ICON[item.id];
           const active = isActive(route, item.id);
@@ -45,10 +45,10 @@ export function Sidebar() {
               key={item.id}
               onClick={() => navigate(item.id)}
               className={
-                "flex items-center gap-[11px] rounded-[4px] border border-l-2 px-[11px] py-[9px] text-left text-[13.5px] font-medium transition-all " +
+                "flex items-center gap-[11px] rounded-[3px] border px-[11px] py-[9px] text-left text-[13.5px] font-medium transition-all " +
                 (active
-                  ? "border-[#7a5a2e] border-l-brass-hi bg-[linear-gradient(180deg,rgba(224,169,74,0.22),rgba(224,138,60,0.1))] text-[#f6e4b6] shadow-[inset_0_0_12px_rgba(224,169,74,0.18),0_1px_0_rgba(0,0,0,0.35)] [&_svg]:text-brass-hi"
-                  : "border-transparent text-cream-dim hover:bg-[rgba(224,138,60,0.08)] hover:text-cream")
+                  ? "border-[#000] bg-[linear-gradient(180deg,#2a6b2a,#123f12)] text-[#f4ecd2] shadow-[inset_0_1px_0_rgba(180,230,170,0.25),inset_0_-6px_10px_rgba(0,0,0,0.25)] [&_svg]:text-brass-hi"
+                  : "border-transparent text-cream-dim hover:bg-[rgba(47,122,47,0.16)] hover:text-cream")
               }
             >
               <Icon />
@@ -65,7 +65,7 @@ export function Sidebar() {
         </div>
         <div className="flex items-center justify-between px-1 text-[10px] uppercase tracking-[0.14em] text-cream-faint">
           <span>EasyTibia</span>
-          <span className="rounded-[3px] border border-[#5a4023] bg-[rgba(224,169,74,0.14)] px-[5px] py-px text-brass-hi">
+          <span className="rounded-[3px] border border-[#000] bg-[rgba(47,122,47,0.3)] px-[5px] py-px text-brass-hi">
             beta 0.1
           </span>
         </div>

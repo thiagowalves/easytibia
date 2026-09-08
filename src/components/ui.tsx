@@ -25,10 +25,10 @@ export function SectionCap({
   );
 }
 
-/** Título Grenze Gotisch da página. */
+/** Título da página numa barra verde, no estilo das caixas do tibia.com. */
 export function PageTitle({ children }: { children: ReactNode }) {
   return (
-    <h1 className="m-0 font-display text-[28px] font-semibold tracking-[0.5px] text-[#ecdcb2] [text-shadow:0_1px_0_rgba(0,0,0,0.45)]">
+    <h1 className="tibia-titlebar m-0 font-display text-[22px] font-semibold tracking-[0.4px] text-[#f2ead0] [text-shadow:0_1px_0_rgba(0,0,0,0.5)]">
       {children}
     </h1>
   );
