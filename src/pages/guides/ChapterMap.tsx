@@ -3,13 +3,13 @@ import { tibiaMapUrl, type Coord } from "../../lib/tibia/guide/map";
 import { SectionCap } from "../../components/ui";
 
 /* ---------------------------------------------------------------------------
-   Mapa esquemático do capítulo: junta os pontos com coordenada (NPCs de
-   blocos "places" e diálogos), agrupa os que estão no mesmo lugar e mostra
-   a posição relativa entre os grupos. Não é o mapa do jogo — as distâncias
-   são aproximadas. Cada ponto abre o mapa comentado do TibiaMaps.
-
-   Só aparece quando há pelo menos 3 lugares distintos.
+   Mapa do capítulo: recorte real do mapa do jogo (tiles do TibiaMaps, 1 tile
+   do jogo = 1 pixel) com os pontos do capítulo marcados por cima. Cada ponto
+   também abre o mapa comentado do TibiaMaps na coordenada exata.
 --------------------------------------------------------------------------- */
+
+const TILE = 256;
+const TILE_BASE = "https://tibiamaps.github.io/tibia-map-data/mapper/Minimap_Color_";
 
 interface Group {
   names: string[];
@@ -36,32 +36,68 @@ function collectGroups(chapter: GuideChapter): Group[] {
   return [...byKey.values()];
 }
 
-const SIZE = 100;
-const GRID = 12.5;
+function mode<T>(arr: T[]): T {
+  const count = new Map<T, number>();
+  let best = arr[0];
+  let bestN = 0;
+  for (const v of arr) {
+    const n = (count.get(v) ?? 0) + 1;
+    count.set(v, n);
+    if (n > bestN) {
+      bestN = n;
+      best = v;
+    }
+  }
+  return best;
+}
 
 export function ChapterMap({ chapter }: { chapter: GuideChapter }) {
   const groups = collectGroups(chapter);
-  if (groups.length < 3) return null;
+  if (groups.length < 1) return null;
 
   const xs = groups.map((g) => g.coord[0]);
   const ys = groups.map((g) => g.coord[1]);
-  const cx = (Math.min(...xs) + Math.max(...xs)) / 2;
-  const cy = (Math.min(...ys) + Math.max(...ys)) / 2;
-  const spanX = Math.max(...xs) - Math.min(...xs);
-  const spanY = Math.max(...ys) - Math.min(...ys);
-  // Usa o maior vão para preservar a proporção; com piso, para um vilarejo
-  // pequeno não esticar de ponta a ponta.
-  const half = Math.max(55, Math.max(spanX, spanY) / 2 + 12);
-  const px = (x: number) => ((x - (cx - half)) / (2 * half)) * SIZE;
-  const py = (y: number) => ((y - (cy - half)) / (2 * half)) * SIZE; // y do Tibia cresce para o sul = para baixo
+  // 7 é o andar de superfície do Tibia — prefira-o quando algum ponto estiver nele.
+  const allFloors = groups.map((g) => g.coord[2]);
+  const floor = allFloors.includes(7) ? 7 : mode(allFloors);
 
-  const gridLines = [];
-  for (let v = GRID; v < SIZE; v += GRID) {
-    gridLines.push(<line key={`h${v}`} x1={0} y1={v} x2={SIZE} y2={v} stroke="#dccca1" strokeWidth={0.5} />);
-    gridLines.push(<line key={`v${v}`} x1={v} y1={0} x2={v} y2={SIZE} stroke="#dccca1" strokeWidth={0.5} />);
+  // Viewport em coordenadas do jogo: bounding box + margem generosa (dá
+  // contexto e deixa os pinos pequenos), com teto de vão.
+  const pad = 60;
+  const clampSpan = (a0: number, a1: number): [number, number] => {
+    if (a1 - a0 <= 460) return [a0, a1];
+    const c = (a0 + a1) / 2;
+    return [Math.round(c - 230), Math.round(c + 230)];
+  };
+  let [vx0, vx1] = clampSpan(Math.min(...xs) - pad, Math.max(...xs) + pad);
+  let [vy0, vy1] = clampSpan(Math.min(...ys) - pad, Math.max(...ys) + pad);
+  // Não deixa o recorte ficar muito esticado: expande o eixo curto.
+  const balance = () => {
+    const w = vx1 - vx0;
+    const h = vy1 - vy0;
+    if (h > w * 1.5) {
+      const g = (h / 1.5 - w) / 2;
+      vx0 -= g;
+      vx1 += g;
+    } else if (w > h * 1.5) {
+      const g = (w / 1.5 - h) / 2;
+      vy0 -= g;
+      vy1 += g;
+    }
+  };
+  balance();
+  const vw = Math.round(vx1 - vx0);
+  const vh = Math.round(vy1 - vy0);
+
+  const tiles: { tx: number; ty: number }[] = [];
+  for (let tx = Math.floor(vx0 / TILE) * TILE; tx < vx1; tx += TILE) {
+    for (let ty = Math.floor(vy0 / TILE) * TILE; ty < vy1; ty += TILE) {
+      tiles.push({ tx, ty });
+    }
   }
 
-  const floors = [...new Set(groups.map((g) => g.coord[2]))];
+  // Raio ~ constante na tela (o SVG é exibido com ~360 px de largura).
+  const r = Math.max(2.8, Math.min(7, vw / 46));
 
   return (
     <div className="rounded-[4px] border border-[#15100a] bg-parch p-[16px_18px] shadow-[0_2px_6px_rgba(0,0,0,0.4)]">
@@ -70,31 +106,38 @@ export function ChapterMap({ chapter }: { chapter: GuideChapter }) {
       </SectionCap>
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
         <svg
-          viewBox={`0 0 ${SIZE} ${SIZE}`}
-          className="w-full max-w-[220px] shrink-0 self-center rounded-[4px]"
+          viewBox={`0 0 ${vw} ${vh}`}
+          className="w-full max-w-[360px] shrink-0 self-center rounded-[4px] border border-[#15100a] bg-[#0d0d0d] [image-rendering:pixelated]"
         >
-          <rect x={0} y={0} width={SIZE} height={SIZE} fill="#efe4c8" />
-          {gridLines}
-          <rect x={0.5} y={0.5} width={SIZE - 1} height={SIZE - 1} fill="none" stroke="#c6b489" strokeWidth={1} />
-          <path d="M50 4 L47 10 L50 8 L53 10 Z" fill="#8b7952" />
-          <text x={50} y={17} textAnchor="middle" fill="#8b7952" fontSize={5} fontWeight="bold">
-            N
-          </text>
-          {groups.map((g, i) => (
-            <g key={g.coord.join(",")}>
-              <circle cx={px(g.coord[0])} cy={py(g.coord[1])} r={4.6} fill="#8f3a2f" />
-              <text
-                x={px(g.coord[0])}
-                y={py(g.coord[1]) + 2.1}
-                textAnchor="middle"
-                fill="#f0e3c6"
-                fontSize={5}
-                fontWeight="bold"
-              >
-                {i + 1}
-              </text>
-            </g>
+          {tiles.map(({ tx, ty }) => (
+            <image
+              key={`${tx}_${ty}`}
+              href={`${TILE_BASE}${tx}_${ty}_${floor}.png`}
+              x={tx - vx0}
+              y={ty - vy0}
+              width={TILE}
+              height={TILE}
+            />
           ))}
+          {groups.map((g, i) => {
+            const cx = g.coord[0] - vx0 + 0.5;
+            const cy = g.coord[1] - vy0 + 0.5;
+            return (
+              <g key={g.coord.join(",")}>
+                <circle cx={cx} cy={cy} r={r} fill="#8f3a2f" stroke="#f0e3c6" strokeWidth={r * 0.26} />
+                <text
+                  x={cx}
+                  y={cy + r * 0.4}
+                  textAnchor="middle"
+                  fill="#f0e3c6"
+                  fontSize={r * 1.15}
+                  fontWeight="bold"
+                >
+                  {i + 1}
+                </text>
+              </g>
+            );
+          })}
         </svg>
 
         <ol className="flex min-w-0 flex-1 flex-col gap-1.5">
@@ -103,7 +146,12 @@ export function ChapterMap({ chapter }: { chapter: GuideChapter }) {
               <span className="mt-0.5 flex h-[17px] w-[17px] shrink-0 items-center justify-center rounded-full bg-seal font-mono text-[10px] font-bold text-[#f0e3c6]">
                 {i + 1}
               </span>
-              <span className="min-w-0 flex-1 text-ink">{g.names.join(", ")}</span>
+              <span className="min-w-0 flex-1 text-ink">
+                {g.names.join(", ")}
+                {g.coord[2] !== floor && (
+                  <span className="text-ink-faint"> · andar {g.coord[2]}</span>
+                )}
+              </span>
               <a
                 href={tibiaMapUrl(g.coord)}
                 target="_blank"
@@ -117,8 +165,16 @@ export function ChapterMap({ chapter }: { chapter: GuideChapter }) {
         </ol>
       </div>
       <p className="mt-3 text-[10.5px] leading-relaxed text-ink-faint">
-        Esquema de posição relativa {floors.length === 1 ? `(andar ${floors[0]})` : ""} — as
-        distâncias são aproximadas. Toque em um ponto para abrir o mapa comentado do TibiaMaps.
+        Recorte do andar {floor}. Mapa:{" "}
+        <a
+          href="https://tibiamaps.io/"
+          target="_blank"
+          rel="noreferrer"
+          className="text-num underline decoration-dotted underline-offset-2 hover:text-seal"
+        >
+          TibiaMaps.io
+        </a>{" "}
+        (dados CC0). Toque em um ponto na lista para abrir o mapa comentado.
       </p>
     </div>
   );
