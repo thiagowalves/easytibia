@@ -59,6 +59,9 @@ const PATHS: Record<string, string> = {
   "Naji": "/b/ba/Naji.gif",
   "Gamel": "/b/bf/Gamel.gif",
   "Captain Bluebear": "/1/19/Captain_Bluebear.gif",
+
+  // Outros
+  "Grizzly Adams": "/b/b5/Grizzly_Adams.gif",
 };
 
 export function sprite(name: string): string | undefined {
