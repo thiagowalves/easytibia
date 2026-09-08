@@ -3,24 +3,30 @@ import { tibiaMapUrl, type Coord } from "../../lib/tibia/guide/map";
 import { SectionCap } from "../../components/ui";
 
 /* ---------------------------------------------------------------------------
-   Mapa esquemático do capítulo: junta todos os pontos com coordenada
-   (NPCs de blocos "places" e diálogos) e mostra a posição relativa entre
-   eles. Não é o mapa do jogo — as distâncias são aproximadas. Cada ponto
-   abre o mapa comentado do TibiaMaps na coordenada exata.
+   Mapa esquemático do capítulo: junta os pontos com coordenada (NPCs de
+   blocos "places" e diálogos), agrupa os que estão no mesmo lugar e mostra
+   a posição relativa entre os grupos. Não é o mapa do jogo — as distâncias
+   são aproximadas. Cada ponto abre o mapa comentado do TibiaMaps.
+
+   Só aparece quando há pelo menos 3 lugares distintos — abaixo disso um
+   esquema com 1 ou 2 pontos não ajuda.
 --------------------------------------------------------------------------- */
 
-interface Pin {
-  name: string;
+interface Group {
+  names: string[];
   coord: Coord;
 }
 
-function collectPins(chapter: GuideChapter): Pin[] {
-  const pins: Pin[] = [];
-  const seen = new Set<string>();
+function collectGroups(chapter: GuideChapter): Group[] {
+  const byKey = new Map<string, Group>();
+  const seenName = new Set<string>();
   const add = (name: string, coord?: Coord) => {
-    if (!coord || seen.has(name)) return;
-    seen.add(name);
-    pins.push({ name, coord });
+    if (!coord || seenName.has(name)) return;
+    seenName.add(name);
+    const key = coord.join(",");
+    const g = byKey.get(key);
+    if (g) g.names.push(name);
+    else byKey.set(key, { names: [name], coord });
   };
   for (const section of chapter.sections) {
     for (const block of section.blocks) {
@@ -28,15 +34,15 @@ function collectPins(chapter: GuideChapter): Pin[] {
       else if (block.kind === "dialogue") add(block.npc, block.coord);
     }
   }
-  return pins;
+  return [...byKey.values()];
 }
 
 export function ChapterMap({ chapter }: { chapter: GuideChapter }) {
-  const pins = collectPins(chapter);
-  if (pins.length < 2) return null;
+  const groups = collectGroups(chapter);
+  if (groups.length < 3) return null;
 
-  const xs = pins.map((p) => p.coord[0]);
-  const ys = pins.map((p) => p.coord[1]);
+  const xs = groups.map((g) => g.coord[0]);
+  const ys = groups.map((g) => g.coord[1]);
   let minX = Math.min(...xs);
   let maxX = Math.max(...xs);
   let minY = Math.min(...ys);
@@ -52,7 +58,7 @@ export function ChapterMap({ chapter }: { chapter: GuideChapter }) {
   const px = (x: number) => ((x - (cx - half)) / (2 * half)) * 100;
   const py = (y: number) => ((y - (cy - half)) / (2 * half)) * 100; // y do Tibia cresce para o sul = para baixo
 
-  const floors = [...new Set(pins.map((p) => p.coord[2]))];
+  const floors = [...new Set(groups.map((g) => g.coord[2]))];
 
   return (
     <div className="rounded-[4px] border border-[#15100a] bg-parch p-[16px_18px] shadow-[0_2px_6px_rgba(0,0,0,0.4)]">
@@ -67,12 +73,12 @@ export function ChapterMap({ chapter }: { chapter: GuideChapter }) {
           <text x="50" y="7" textAnchor="middle" className="fill-ink-faint text-[6px] font-bold">
             N
           </text>
-          {pins.map((p, i) => (
-            <g key={p.name}>
-              <circle cx={px(p.coord[0])} cy={py(p.coord[1])} r="4.2" className="fill-seal" />
+          {groups.map((g, i) => (
+            <g key={g.coord.join(",")}>
+              <circle cx={px(g.coord[0])} cy={py(g.coord[1])} r="4.2" className="fill-seal" />
               <text
-                x={px(p.coord[0])}
-                y={py(p.coord[1]) + 2.1}
+                x={px(g.coord[0])}
+                y={py(g.coord[1]) + 2.1}
                 textAnchor="middle"
                 className="fill-[#f0e3c6] text-[5px] font-bold"
               >
@@ -83,17 +89,17 @@ export function ChapterMap({ chapter }: { chapter: GuideChapter }) {
         </svg>
 
         <ol className="flex min-w-0 flex-1 flex-col gap-1.5">
-          {pins.map((p, i) => (
-            <li key={p.name} className="flex items-baseline gap-2 text-[12px]">
-              <span className="flex h-[17px] w-[17px] shrink-0 items-center justify-center rounded-full bg-seal font-mono text-[10px] font-bold text-[#f0e3c6]">
+          {groups.map((g, i) => (
+            <li key={g.coord.join(",")} className="flex items-baseline gap-2 text-[12px]">
+              <span className="mt-0.5 flex h-[17px] w-[17px] shrink-0 items-center justify-center rounded-full bg-seal font-mono text-[10px] font-bold text-[#f0e3c6]">
                 {i + 1}
               </span>
-              <span className="text-ink">{p.name}</span>
+              <span className="min-w-0 flex-1 text-ink">{g.names.join(", ")}</span>
               <a
-                href={tibiaMapUrl(p.coord)}
+                href={tibiaMapUrl(g.coord)}
                 target="_blank"
                 rel="noreferrer"
-                className="ml-auto whitespace-nowrap text-[11px] text-num underline decoration-dotted underline-offset-2 hover:text-seal"
+                className="whitespace-nowrap text-[11px] text-num underline decoration-dotted underline-offset-2 hover:text-seal"
               >
                 ver no mapa ↗
               </a>
