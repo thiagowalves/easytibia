@@ -1,4 +1,6 @@
 import type { GuideChapter } from "./types";
+import { conta } from "./chapters/conta";
+import { tutorial } from "./chapters/tutorial";
 import { newhaven } from "./chapters/newhaven";
 import { targuna } from "./chapters/targuna";
 import { continente } from "./chapters/continente";
@@ -31,8 +33,8 @@ const soon = (
 });
 
 export const CHAPTERS: GuideChapter[] = [
-  soon("conta", 1, "Conta e personagem", "Mundo, tipo de PvP e o e-mail que você não pode esquecer", "—"),
-  soon("tutorial", 2, "Tutorial e vocação", "O novo tutorial e como escolher entre as cinco vocações", "1"),
+  conta,
+  tutorial,
   newhaven,
   targuna,
   continente,
