@@ -3,6 +3,7 @@ import { RouterProvider, useRouter } from "./state/router";
 import { VocationProvider } from "./state/vocation";
 import { Home } from "./pages/Home";
 import { Placeholder } from "./pages/Placeholder";
+import { GuidesPage } from "./pages/guides/GuidesPage";
 import { LevelCalculator } from "./pages/calculators/LevelCalculator";
 import { SkillCalculator } from "./pages/calculators/SkillCalculator";
 import { MagicCalculator } from "./pages/calculators/MagicCalculator";
@@ -19,7 +20,7 @@ function Screen() {
     case "calc-magic":
       return <MagicCalculator />;
     case "guides":
-      return <Placeholder title="Guias" />;
+      return <GuidesPage />;
     case "builds":
       return <Placeholder title="Builds" />;
     case "hunts":

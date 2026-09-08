@@ -7,13 +7,13 @@ import { useVocation } from "../state/vocation";
 
 const STEPS = [
   { n: "I", title: "Escolha sua vocação", text: "Cada uma joga de um jeito. Veja pontos fortes, fracos e papel na party." },
-  { n: "II", title: "Complete Rookgaard", text: "A ilha inicial ensina o básico e te deixa com skill 10+." },
-  { n: "III", title: "Primeiras tasks", text: "As tasks do Grizzly Adams pagam bem e guiam sua progressão." },
-  { n: "IV", title: "Suba de nível", text: "Hunts seguras para o seu nível, com XP/h e lucro previsíveis." },
+  { n: "II", title: "Saia de Newhaven", text: "A ilha inicial ensina o básico e te leva até o nível 8." },
+  { n: "III", title: "Passe por Targuna", text: "Três caças guiadas dos níveis 8 a 20, até o primeiro boss." },
+  { n: "IV", title: "Suba no continente", text: "Hunts seguras para o seu nível, com XP/h e lucro previsíveis." },
 ];
 
 const QUICK: { id: RouteId; label: string; tag: string; text: string }[] = [
-  { id: "guides", label: "Guias", tag: "em breve", text: "Do personagem recém-criado até o primeiro boss." },
+  { id: "guides", label: "Guia do Novato", tag: "pronto", text: "Do personagem recém-criado até o primeiro boss." },
   { id: "builds", label: "Builds", tag: "em breve", text: "Distribuição de pontos e equipamento por faixa de nível." },
   { id: "hunts", label: "Hunts", tag: "em breve", text: "Spots seguros com XP/h e lucro esperado por vocação." },
   { id: "tasks", label: "Tasks", tag: "em breve", text: "Ordem recomendada das tasks de Grizzly Adams e dos Gnomes." },
