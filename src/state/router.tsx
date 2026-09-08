@@ -3,6 +3,8 @@ import { createContext, useContext, useMemo, useState, type ReactNode } from "re
 export type RouteId =
   | "home"
   | "guides"
+  | "quests"
+  | "tasks"
   | "calc-level"
   | "calc-skill"
   | "calc-magic"

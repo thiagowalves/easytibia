@@ -14,11 +14,13 @@ const STEPS = [
 
 const QUICK: { id: RouteId; label: string; text: string }[] = [
   { id: "guides", label: "Guia do Novato", text: "8 capítulos, do personagem recém-criado ao nível 50." },
+  { id: "quests", label: "Quests", text: "Lista filtrável das quests que valem a pena cedo." },
+  { id: "tasks", label: "Tasks", text: "Tracker das tasks do Grizzly Adams, com pontos e rank." },
   { id: "calc-level", label: "Calculadora de Nível", text: "Quanto de XP falta e quanto tempo pro próximo nível." },
   { id: "calc-death", label: "Bênçãos & Morte", text: "O que você perde ao morrer e o custo de se proteger." },
-  { id: "calc-exercise", label: "Exercise Weapons", text: "Quantas armas de treino e o custo em gold e Tibia Coins." },
   { id: "calc-lootsplit", label: "Loot Split", text: "Divide o loot da party pelo texto do Hunt Analyser." },
   { id: "calc-hunt", label: "Análise de Hunt", text: "XP/h, lucro/h e o tempo até o seu nível alvo." },
+  { id: "calc-exercise", label: "Exercise Weapons", text: "Quantas armas de treino e o custo em gold e Tibia Coins." },
 ];
 
 export function Home() {
@@ -56,7 +58,7 @@ export function Home() {
       <div className="grid grid-cols-[minmax(0,1fr)_322px] gap-[22px]">
         <div>
           <SectionCap>Acesso rápido</SectionCap>
-          <div className="grid grid-cols-3 gap-[13px]">
+          <div className="grid grid-cols-2 gap-[13px] sm:grid-cols-4">
             {QUICK.map((q) => {
               const Icon = NAV_ICON[q.id];
               return (

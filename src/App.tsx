@@ -3,6 +3,8 @@ import { RouterProvider, useRouter } from "./state/router";
 import { VocationProvider } from "./state/vocation";
 import { Home } from "./pages/Home";
 import { GuidesPage } from "./pages/guides/GuidesPage";
+import { QuestsPage } from "./pages/quests/QuestsPage";
+import { TasksPage } from "./pages/tasks/TasksPage";
 import { LevelCalculator } from "./pages/calculators/LevelCalculator";
 import { SkillCalculator } from "./pages/calculators/SkillCalculator";
 import { MagicCalculator } from "./pages/calculators/MagicCalculator";
@@ -35,6 +37,10 @@ function Screen() {
       return <ImbueCalculator />;
     case "guides":
       return <GuidesPage />;
+    case "quests":
+      return <QuestsPage />;
+    case "tasks":
+      return <TasksPage />;
     default:
       return <Home />;
   }
