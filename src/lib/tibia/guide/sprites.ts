@@ -53,6 +53,12 @@ const PATHS: Record<string, string> = {
   "Infernoid Soul": "/c/c0/Infernoid_Soul.gif",
   "Infernoid Spiritual": "/2/2c/Infernoid_Spiritual.gif",
   "Herald of Fire": "/8/8f/Herald_of_Fire.gif",
+
+  // Thais — NPCs
+  "Norf": "/0/00/Norf.gif",
+  "Naji": "/b/ba/Naji.gif",
+  "Gamel": "/b/bf/Gamel.gif",
+  "Captain Bluebear": "/1/19/Captain_Bluebear.gif",
 };
 
 export function sprite(name: string): string | undefined {

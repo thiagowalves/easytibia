@@ -1,6 +1,7 @@
 import type { GuideChapter } from "./types";
 import { newhaven } from "./chapters/newhaven";
 import { targuna } from "./chapters/targuna";
+import { continente } from "./chapters/continente";
 
 /* ---------------------------------------------------------------------------
    Registro dos capítulos do Guia do Novato.
@@ -34,7 +35,7 @@ export const CHAPTERS: GuideChapter[] = [
   soon("tutorial", 2, "Tutorial e vocação", "O novo tutorial e como escolher entre as cinco vocações", "1"),
   newhaven,
   targuna,
-  soon("continente", 5, "Chegada ao continente", "Banco, depot, blessings e o primeiro refill de verdade", "20+"),
+  continente,
   soon("hunts-20-50", 6, "Do 20 ao 50", "Spots seguros por vocação, com XP/h e lucro esperado", "20–50"),
   soon("tasks", 7, "Tasks do Grizzly Adams", "A quest Killing in the Name of e a ordem que compensa", "8+"),
   soon("sistemas", 8, "Sistemas que ninguém te explica", "Stamina, imbuement, charms, prey e a Wheel of Destiny", "todos"),

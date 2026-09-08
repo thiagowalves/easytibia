@@ -83,7 +83,7 @@ export const newhaven: GuideChapter = {
             {
               name: "Viola",
               meta: "Magias",
-              detail: "Vende as magias básicas de todas as vocações.",
+              detail: "Ensina as magias iniciais. Desde jan/2026 a maioria das magias já vem sozinha ao subir de nível.",
               coord: [32571, 32507, 7],
               icon: sprite("Viola"),
             },
@@ -178,9 +178,14 @@ export const newhaven: GuideChapter = {
           items: [
             "Cace em sessões curtas; volte à vila quando a mochila encher ou a vida ficar baixa.",
             "Na vila: venda o loot no Avriel e deposite o ouro no Flavius (hi › deposit all › yes).",
-            "Compre as magias básicas da sua vocação com a Viola — pelo menos a de cura e a de ataque.",
+            "Compre potions e munição no Avriel conforme precisar.",
             "Repita até o nível 8.",
           ],
+        },
+        {
+          kind: "callout",
+          tone: "info",
+          text: "Você não compra magias de NPC. Desde a atualização de janeiro de 2026, cada magia é aprendida sozinha assim que você atinge o nível necessário para ela.",
         },
         {
           kind: "callout",
@@ -212,7 +217,7 @@ export const newhaven: GuideChapter = {
         {
           kind: "callout",
           tone: "warn",
-          text: "A saída é definitiva: você nunca mais volta a Newhaven. Antes de embarcar, confira que vendeu o loot, depositou o ouro e comprou suas magias.",
+          text: "A saída é definitiva: você nunca mais volta a Newhaven. Antes de embarcar, confira que vendeu o loot e depositou o ouro no banco.",
         },
         {
           kind: "callout",
@@ -229,7 +234,7 @@ export const newhaven: GuideChapter = {
     "Sair da ilha sem matar os dois mini-bosses (Muglex Clan Chief e The Corruptor) — o kit inicial de vocação é dropado uma única vez.",
     "Vender o Guardian Ring da quest.",
     "Ficar farmando Newhaven até o nível 20 — perda de tempo.",
-    "Embarcar sem antes vender loot, depositar ouro e comprar as magias básicas.",
+    "Embarcar sem antes vender o loot e depositar o ouro no banco.",
   ],
 
   checklist: [
@@ -238,7 +243,7 @@ export const newhaven: GuideChapter = {
     "Newhaven Quest concluída (Muglex Camp + Corrupted Mines)",
     "Mini-bosses Muglex Clan Chief e The Corruptor derrotados",
     "Nível 8 alcançado",
-    "Loot vendido, ouro depositado, magias básicas compradas",
+    "Loot vendido e ouro depositado no Flavius",
     "Falou com a Anna e embarcou para Targuna",
   ],
 
