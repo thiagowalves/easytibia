@@ -9,6 +9,7 @@ import { SkillCalculator } from "./pages/calculators/SkillCalculator";
 import { MagicCalculator } from "./pages/calculators/MagicCalculator";
 import { DeathCalculator } from "./pages/calculators/DeathCalculator";
 import { ExerciseCalculator } from "./pages/calculators/ExerciseCalculator";
+import { LootSplitCalculator } from "./pages/calculators/LootSplitCalculator";
 
 function Screen() {
   const { route } = useRouter();
@@ -25,6 +26,8 @@ function Screen() {
       return <DeathCalculator />;
     case "calc-exercise":
       return <ExerciseCalculator />;
+    case "calc-lootsplit":
+      return <LootSplitCalculator />;
     case "guides":
       return <GuidesPage />;
     case "builds":
