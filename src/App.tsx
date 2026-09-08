@@ -7,6 +7,8 @@ import { GuidesPage } from "./pages/guides/GuidesPage";
 import { LevelCalculator } from "./pages/calculators/LevelCalculator";
 import { SkillCalculator } from "./pages/calculators/SkillCalculator";
 import { MagicCalculator } from "./pages/calculators/MagicCalculator";
+import { DeathCalculator } from "./pages/calculators/DeathCalculator";
+import { ExerciseCalculator } from "./pages/calculators/ExerciseCalculator";
 
 function Screen() {
   const { route } = useRouter();
@@ -19,6 +21,10 @@ function Screen() {
       return <SkillCalculator />;
     case "calc-magic":
       return <MagicCalculator />;
+    case "calc-death":
+      return <DeathCalculator />;
+    case "calc-exercise":
+      return <ExerciseCalculator />;
     case "guides":
       return <GuidesPage />;
     case "builds":

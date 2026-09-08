@@ -4,6 +4,8 @@ const TABS: { id: RouteId; label: string }[] = [
   { id: "calc-level", label: "Nível" },
   { id: "calc-skill", label: "Skill" },
   { id: "calc-magic", label: "Magic Level" },
+  { id: "calc-death", label: "Bênçãos & Morte" },
+  { id: "calc-exercise", label: "Exercise Weapons" },
 ];
 
 /** Abas para alternar entre as três calculadoras. */

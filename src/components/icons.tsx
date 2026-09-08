@@ -106,6 +106,8 @@ export const NAV_ICON: Record<RouteId, (p: IconProps) => ReactElement> = {
   "calc-level": CalculatorIcon,
   "calc-skill": CalculatorIcon,
   "calc-magic": CalculatorIcon,
+  "calc-death": CalculatorIcon,
+  "calc-exercise": CalculatorIcon,
 };
 
 /* ---- Figuras das vocações (medalhões) ---- */

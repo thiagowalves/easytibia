@@ -9,7 +9,9 @@ export type RouteId =
   | "quests"
   | "calc-level"
   | "calc-skill"
-  | "calc-magic";
+  | "calc-magic"
+  | "calc-death"
+  | "calc-exercise";
 
 interface RouterValue {
   route: RouteId;
